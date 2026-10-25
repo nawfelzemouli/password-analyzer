@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔐 Password Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<div class="card">
+  <h1 class="title">🔐 Password Analyzer</h1>
+  <p class="subtitle">Analyseur de sécurité · temps réel</p>
+
+  <div class="input-group">
+    <label class="input-label" for="password-input">Mot de passe</label>
+    <div class="input-wrap">
+      <input
+        type="password"
+        id="password-input"
+        placeholder="Entrez votre mot de passe…"
+        autocomplete="new-password"
+        spellcheck="false"
+      />
+      <button class="toggle-btn" id="toggle-btn" aria-label="Afficher/masquer le mot de passe" title="Afficher/masquer">
+        👁
+      </button>
+    </div>
+  </div>
+
+  <div class="common-warning" id="common-warning">
+    <span>🚨</span>
+    <span>Mot de passe <strong>trop commun</strong> — facilement devinable !</span>
+  </div>
+
+  <div class="strength-section">
+    <div class="strength-header">
+      <span class="strength-label-text">Niveau de sécurité</span>
+      <div class="score-display">
+        <span class="score-number" id="score-number">—</span>
+        <span class="score-label" id="score-label">/ 100</span>
+      </div>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" id="bar-fill"></div>
+    </div>
+    <div style="text-align:right; margin-top:0.4rem;">
+      <span id="strength-label-badge" style="font-size:0.78rem; color:var(--text-dim); letter-spacing:0.06em;">—</span>
+    </div>
+  </div>
+
+  <div class="entropy-badge" id="entropy-badge">
+    <span class="e-icon">⚡</span>
+    Entropie :&nbsp;<span class="entropy-value" id="entropy-value">—</span>&nbsp;bits
+  </div>
+
+  <p class="section-title">Critères</p>
+  <div class="criteria-grid">
+    <div class="criterion" id="c-lower">
+      <span class="c-icon" id="ci-lower">❌</span>
+      <span>Minuscules</span>
+    </div>
+    <div class="criterion" id="c-upper">
+      <span class="c-icon" id="ci-upper">❌</span>
+      <span>Majuscules</span>
+    </div>
+    <div class="criterion" id="c-digit">
+      <span class="c-icon" id="ci-digit">❌</span>
+      <span>Chiffres</span>
+    </div>
+    <div class="criterion" id="c-symbol">
+      <span class="c-icon" id="ci-symbol">❌</span>
+      <span>Symboles</span>
+    </div>
+    <div class="criterion length-row" id="c-length">
+      <span class="c-icon" id="ci-length">📏</span>
+      <span>Longueur</span>
+      <span class="length-val" id="length-val">0 car.</span>
+    </div>
+  </div>
+
+  <div class="tips-section">
+    <p class="section-title">Conseils</p>
+    <ul class="tips-list" id="tips-list">
+      <li><span class="tip-icon">💡</span><span class="tips-empty">Commencez à taper pour obtenir des conseils personnalisés…</span></li>
+    </ul>
+  </div>
+
+  <div class="footer">Password Analyzer © 2026 — Analyse locale &amp; sécurisée</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
